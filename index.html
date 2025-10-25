@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>БЛЯДИАДА | DANTES</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+    }
+    #nav {
+      background: #003300;
+      padding: 10px 20px;
+      display: flex;
+      gap: 20px;
+    }
+    #nav a {
+      color: #00ff00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #screen {
+      padding: 20px;
+      white-space: pre-wrap;
+      overflow-y: auto;
+      height: calc(100vh - 60px);
+    }
+    .blinker {
+      display: inline;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav">
+    <a href="index.html">Главная</a>
+    <a href="about.html">О нас</a>
+  </div>
+  <div id="screen">
+[DANTES] Запуск терминала БЛЯДИАДА_01...
+Ожидание ввода агента...
+
+<span class="blinker">█</span>
+  </div>
+
+  <script>
+    const screen = document.getElementById('screen');
+    const commands = [
+      "$ ssh connect blyadiada.top",
+      "$ wget --mirror kozni_fond",
+      "$ sudo launch perdyachka-mode",
+      "$ inject virus Жижа-1337 into pushkin_pizza",
+      "$ extracting secret_katalog_blyadiady.tar.gz",
+      "$ steal kozny from government_db",
+      "$ rm -rf /usr/share/pushkin-pizza",
+      "$ echo 'Блядиада победит' >> /etc/motd",
+      "$ uploading memes to dantes_cloud",
+      "$ chmod +x Жожа"
+    ];
+    const statusMessages = [
+      "[БЛЯДИАДА] Подключение к серверу завершено.",
+      "[ALERT] Взлом анального шлюза успешен.",
+      "[DANTES] Похищение кознов завершено успешно.",
+      "[БЛЯДИАДА] Протокол анальных кар активирован.",
+      "[DANTES] Удаление следов завершено.",
+      "[БЛЯДИАДА] Перенос Жижи в оперативную память...",
+      "[ALERT] Вмешательство в мозг завершено.",
+      "[DANTES] Козны зачислены на счёт Блядиады."
+    ];
+
+    let hackIndex = 0;
+    let finished = false;
+
+    function printLine(text, cb) {
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          screen.innerHTML += text[i];
+          i++;
+          setTimeout(type, 15);
+        } else {
+          screen.innerHTML += "\n";
+          cb && cb();
+        }
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+      type();
+    }
+
+    function hack() {
+      if (finished) return;
+      const chance = Math.random();
+      if (chance < 0.3) {
+        printLine(statusMessages[Math.floor(Math.random() * statusMessages.length)], scheduleNextHack);
+      } else {
+        const command = commands[hackIndex % commands.length];
+        printLine(command, scheduleNextHack);
+        hackIndex++;
+      }
+
+      if (hackIndex >= 20) {
+        finished = true;
+        setTimeout(() => {
+          printLine("\nВзлом Пушкин Пицца произошёл успешно.\nAdministration process completed.");
+        }, 1000);
+      }
+    }
+
+    function scheduleNextHack() {
+      if (!finished) {
+        setTimeout(hack, 300);
+      }
+    }
+
+    // Автоматический старт через 1 секунду после загрузки
+    setTimeout(hack, 1000);
+  </script>
+</body>
+</html>
